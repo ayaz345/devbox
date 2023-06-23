@@ -20,7 +20,7 @@ class ComposeGreetingInput:
 # Basic activity that logs and does string concatenation
 @activity.defn
 async def compose_greeting(input: ComposeGreetingInput) -> str:
-    activity.logger.info("Running activity with parameter %s" % input)
+    activity.logger.info(f"Running activity with parameter {input}")
     return f"{input.greeting}, {input.name}!"
 
 
@@ -29,7 +29,7 @@ async def compose_greeting(input: ComposeGreetingInput) -> str:
 class GreetingWorkflow:
     @workflow.run
     async def run(self, name: str) -> str:
-        workflow.logger.info("Running workflow with parameter %s" % name)
+        workflow.logger.info(f"Running workflow with parameter {name}")
         return await workflow.execute_activity(
             compose_greeting,
             ComposeGreetingInput("Hello", name),
